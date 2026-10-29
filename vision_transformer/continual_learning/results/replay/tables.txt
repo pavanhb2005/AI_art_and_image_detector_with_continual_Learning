@@ -1,22 +1,26 @@
 
 6-way accuracy per class (did it name the exact source?)
-              after E1  after E2  after E3  after E4  after E5
-real             99.8%     99.7%     97.5%     97.2%     97.5%
-dalle3           98.1%     97.9%     97.4%     96.0%     95.4%
-midjourney           -     85.4%     84.0%     85.3%     82.4%
-sd21                 -         -     86.7%     78.5%     72.7%
-sd3                  -         -         -     69.6%     66.1%
-sdxl                 -         -         -         -     71.0%
-AVERAGE          99.0%     94.3%     91.4%     85.3%     80.9%
+              after E1  after E2  after E3  after E4  after E5  after E6  after E7
+real            100.0%    100.0%     98.1%     98.1%     98.2%     98.5%     97.4%
+dalle3           97.9%     97.1%     96.1%     96.9%     95.6%     96.1%     96.1%
+midjourney           -     82.3%     81.7%     82.4%     81.5%     80.8%     80.5%
+sd21                 -         -     88.9%     81.7%     78.8%     76.9%     79.8%
+sd3                  -         -         -     77.7%     78.0%     76.5%     77.8%
+sdxl                 -         -         -         -     74.7%     73.9%     73.1%
+nanobanana           -         -         -         -         -     99.9%     99.8%
+gpt_image_2          -         -         -         -         -         -     98.0%
+AVERAGE          99.0%     93.1%     91.2%     87.4%     84.5%     86.1%     87.8%
 
 Real-vs-AI accuracy per class (real called real / generator called AI)
-              after E1  after E2  after E3  after E4  after E5
-real             99.8%     99.7%     97.5%     97.2%     97.5%
-dalle3           98.1%     97.9%     97.8%     96.5%     95.7%
-midjourney           -     86.1%     90.5%     89.2%     85.9%
-sd21                 -         -     86.8%     86.0%     82.4%
-sd3                  -         -         -     83.3%     80.4%
-sdxl                 -         -         -         -     83.2%
-AVERAGE          99.0%     94.5%     93.2%     90.4%     87.5%
+              after E1  after E2  after E3  after E4  after E5  after E6  after E7
+real            100.0%    100.0%     98.1%     97.5%     97.3%     97.7%     95.9%
+dalle3           97.9%     97.1%     96.9%     97.5%     96.4%     97.7%     97.7%
+midjourney           -     82.5%     87.4%     87.2%     84.0%     83.4%     86.0%
+sd21                 -         -     88.9%     86.8%     86.0%     83.7%     85.9%
+sd3                  -         -         -     85.4%     84.6%     83.5%     86.9%
+sdxl                 -         -         -         -     83.5%     81.5%     84.7%
+nanobanana           -         -         -         -         -    100.0%    100.0%
+gpt_image_2          -         -         -         -         -         -     99.7%
+AVERAGE          99.0%     93.2%     92.8%     90.9%     88.6%     89.6%     92.1%
 
-SUMMARY: {'final_avg_acc': 0.8085333333333332, 'final_macro_f1': 0.8135137600990469, 'final_avg_real_vs_ai': 0.8752, 'final_forgetting': 0.058033333333333326, 'final_backward_transfer': -0.058033333333333326}
+SUMMARY: {'final_avg_acc': 0.878156016357553, 'final_accuracy': 0.8531814097851834, 'final_macro_f1': 0.8648332577195575, 'final_weighted_f1': 0.8587671995806782, 'final_mcc': 0.835074389000953, 'final_kappa': 0.8288812108303026, 'final_roc_auc': 0.9791428699432407, 'final_log_loss': 0.7740874290466309, 'final_ece': 0.04167031703612231, 'final_avg_real_vs_ai': 0.9210447898164594, 'final_real_vs_ai_accuracy': 0.9035979743526913, 'final_real_vs_ai_f1': 0.9401123923329655, 'final_real_vs_ai_auc': 0.9771071855709875, 'final_real_vs_ai_eer': 0.08210640432098767, 'avg_incremental_acc': 0.8986097425677694, 'final_forgetting': 0.024690697674418633, 'final_backward_transfer': -0.02384625322997419}

@@ -31,7 +31,8 @@ class ImageDataset(Dataset):
 
     def __init__(self, items, train):
         self.items = items
-        self.transform = build_transform(cfg.PREPROCESS, cfg.IMAGE_SIZE, train,
+        tta = (not train) and cfg.EVAL_TTA and cfg.PREPROCESS == "crop"      # 5 crops per image when testing
+        self.transform = build_transform(cfg.PREPROCESS, cfg.IMAGE_SIZE, train, tta=tta,
                                          jpeg_prob=cfg.JPEG_PROB if train else 0.0,
                                          blur_prob=cfg.BLUR_PROB if train else 0.0)
 
@@ -62,7 +63,8 @@ def seen_test_dataset(k):
 
 def make_loader(dataset, train):
     workers = cfg.NUM_WORKERS if train else max(0, cfg.NUM_WORKERS // 2)
-    kwargs = dict(batch_size=cfg.BATCH_SIZE, shuffle=train, drop_last=train,
+    batch = cfg.BATCH_SIZE if train or not cfg.EVAL_TTA else max(1, cfg.BATCH_SIZE // 5)   # 5 crops per image
+    kwargs = dict(batch_size=batch, shuffle=train, drop_last=train,
                   num_workers=workers, pin_memory=cfg.DEVICE == "cuda")
     if workers > 0:
         kwargs.update(persistent_workers=train, prefetch_factor=2)

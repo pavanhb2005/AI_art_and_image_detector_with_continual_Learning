@@ -4,6 +4,7 @@
    - what it remembers after an experience (Strategy.after_experience)
 Everything else (optimizer, learning rate, epochs, ...) is identical, so the comparison is fair."""
 import math
+import warnings
 
 import torch
 from tqdm import tqdm
@@ -11,6 +12,9 @@ from tqdm import tqdm
 from cl_common import config as cfg
 from cl_common.data import make_loader
 from models import layerwise_param_groups, set_head_only   # your existing code
+
+
+warnings.filterwarnings("ignore", message=".*lr_scheduler.step.*")   # harmless fp16 first-step warning
 
 
 class Strategy:

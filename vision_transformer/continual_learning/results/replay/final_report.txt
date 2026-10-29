@@ -1,0 +1,31 @@
+CLASSIFICATION (8 classes: real, dalle3, midjourney, sd21, sd3, sdxl, nanobanana, gpt_image_2)
+  accuracy  85.32% | balanced accuracy  87.82% | top-2 accuracy  91.23%
+  precision: macro  87.67%, weighted  89.11%
+  recall:    macro  87.82%, weighted  85.32%
+  F1:        macro  86.48%, weighted  85.88%
+  MCC 0.8351 | Cohen kappa 0.8289 | ROC-AUC (macro one-vs-rest) 0.9791
+  log loss 0.7741 | calibration error (ECE) 0.0417
+
+REAL vs AI-GENERATED
+  accuracy  90.36% | precision  99.19% | recall (AI caught)  89.35% | real recall  95.95% | F1  94.01%
+  ROC-AUC 0.9771 | average precision 0.9959 | EER 0.0821
+
+PER CLASS
+              precision    recall  f1-score   support
+
+        real     0.5986    0.9744    0.7416      7500
+      dalle3     0.9989    0.9608    0.9795      7500
+  midjourney     1.0000    0.8048    0.8918      7500
+        sd21     0.8844    0.7984    0.8392      7500
+         sd3     0.9454    0.7784    0.8538      7500
+        sdxl     0.9655    0.7312    0.8322      7500
+  nanobanana     0.8559    0.9977    0.9213      1720
+ gpt_image_2     0.7652    0.9796    0.8592      2252
+
+    accuracy                         0.8532     48972
+   macro avg     0.8767    0.8782    0.8648     48972
+weighted avg     0.8911    0.8532    0.8588     48972
+
+CONTINUAL LEARNING
+  final average accuracy  87.82% | average incremental accuracy  89.86%
+  forgetting 2.47 points | backward transfer -2.38 points

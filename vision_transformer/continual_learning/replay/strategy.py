@@ -1,7 +1,8 @@
 """REPLAY: keep a small memory of images from old experiences and mix them into every new experience.
 
- - after each experience we keep a few images of the generator that was just learned
-   (the total memory is fixed: REPLAY_MEMORY_SIZE, shared equally between the generators seen so far)
+ - after each experience we keep REPLAY_IMAGES_PER_GENERATOR images of the generator that was just learned
+   (every generator gets the same quota; old generators keep exactly the images they already had, so the
+   memory simply grows by one quota with every new generator)
  - while training on a new experience, the old images are repeated until there are as many of them as
    new images, so every batch is about half new data, half old data
  ("real" needs no memory: it is already part of every experience)"""
@@ -32,9 +33,7 @@ class Replay(Strategy):
 
     def after_experience(self, model, dataset):
         new = [item for item in dataset.items if item[1] != cfg.CLASS_TO_IDX["real"]]
-        self.memory[new[0][1]] = new                                   # add the generator we just learned ...
-        per_generator = cfg.REPLAY_MEMORY_SIZE // len(self.memory)
-        for label, items in self.memory.items():                       # ... and shrink everyone to an equal share
-            self.memory[label] = self.rng.sample(items, min(per_generator, len(items)))
+        quota = min(cfg.REPLAY_IMAGES_PER_GENERATOR, len(new))
+        self.memory[new[0][1]] = self.rng.sample(new, quota)           # add the generator we just learned; nobody else changes
         print(f"  replay memory: {sum(len(v) for v in self.memory.values())} images "
-              f"({per_generator} per generator)")
+              f"({quota} new, {len(self.memory)} generators)")
